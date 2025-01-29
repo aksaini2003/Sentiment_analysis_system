@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentimentAI - Advanced Text Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-brain fa-spin"></i>
+            <span>Analyzing...</span>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden" role="alert">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="glass-container">
+            <header class="header" role="banner">
+                <div class="logo-container">
+                    <div class="logo">
+                        <i class="fas fa-brain gradient-icon pulse"></i>
+                        <h1 class="gradient-text">Sentiment<span>AI</span></h1>
+                    </div>
+                    <p class="subtitle">Analyze the emotional tone of your text with AI</p>
+                </div>
+            </header>
+            
+            <main class="main-content" role="main">
+                <form class="analysis-form" id="analysisForm">
+                    <div class="input-group">
+                        <label for="textInput" class="input-label">Enter your text for analysis:</label>
+                        <div class="textarea-wrapper">
+                            <textarea 
+                                id="textInput" 
+                                placeholder="E.g., This product is amazing!" 
+                                maxlength="500"
+                                aria-label="Text to analyze"
+                            ></textarea>
+                            <div class="char-count" aria-live="polite">
+                                <span id="currentLength">0</span>
+                                <span>/500 characters</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" id="clearBtn" class="secondary-btn" aria-label="Clear text">
+                            <i class="fas fa-times"></i>
+                            Clear
+                        </button>
+                        <button type="submit" id="analyzeBtn" class="gradient-btn" aria-label="Analyze text">
+                            <i class="fas fa-brain"></i>
+                            Analyze
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="result-container" id="resultContainer">
+                    <div class="result-card hidden" id="resultCard" role="region" aria-label="Analysis Result">
+                        <div class="result-header">
+                            <h2>Analysis Result</h2>
+                            <button class="close-btn" id="closeResult" aria-label="Close result">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="sentiment-result" id="sentimentResult">
+                            <div class="sentiment-icon"></div>
+                            <div class="sentiment-text"></div>
+                            <p class="sentiment-explanation"></p>
+                        </div>
+                        <div class="confidence-container">
+                            <div class="confidence-label" title="AI's confidence in the sentiment analysis">
+                                Confidence Level
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="confidence-bar-container">
+                                <div class="confidence-bar" id="confidenceBar"></div>
+                                <span class="confidence-text" id="confidenceScore">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+        <footer class="footer" role="contentinfo">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <span class="separator">|</span>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <span class="separator">|</span>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/aashish-kumar-saini-03946b296/" target="_blank" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/aksaini2003" target="_blank" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://x.com/A_K_SAINI23" target="_blank" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <div class="copyright">
+                    <p>Made with <i class="fas fa-heart pulse"></i> using Machine Learning, HTML, CSS, Javascript and Python</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
